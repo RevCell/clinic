@@ -10,4 +10,6 @@ Route::get('/user', function (Request $request) {
 
 //---------------REGISTER_LOGIN-------------------//
 Route::post("/register",[AuthController::class,'register']);
+Route::post("/login",[AuthController::class,"login"]);
+Route::get("/logout",[AuthController::class,"logout"])->middleware("auth:sanctum");
 
