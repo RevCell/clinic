@@ -4,22 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request): JsonResponse
     {
         $validated_data=$request->validated();
-        User::register($validated_data);
+        $result=User::register($validated_data);
         return response()->json([
             "message"=>"new user registered successfully",
-            "detail"=>new UserResource($validated_data),
+            "detail"=>new UserResource($result[0]),
+            'token'=>$result[1]->plainTextToken,
             "status"=>201
         ]);
     }
@@ -60,17 +61,27 @@ class AuthController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function index()
     {
-        //
+        $user_list=User::all();
+        return \response()->json([
+           "message"=>"user list fetched successfully",
+           'list'=>UserResource::collection($user_list),
+           'status'=>200
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $result=User::update_user($request->validated(),$user);
+        return response()->json([
+            'message'=>"user updated successfully",
+            'detail'=>new UserResource($result),
+            'status'=>200
+        ]);
     }
 
     /**
@@ -78,7 +89,12 @@ class AuthController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([
+            'message'=>"user deleted successfully",
+            'detail'=>new UserResource($user),
+            'status'=>200
+        ]);
     }
 
 

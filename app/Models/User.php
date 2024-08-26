@@ -48,14 +48,16 @@ class User extends Authenticatable
         ];
     }
 
-    public static function register($request): void
+    public static function register($request)
     {
-        User::query()->create([
+        $user=User::query()->create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'role_id' => $request['role_id']
+            'role_id' => 2
         ]);
+        $token=$user->createToken("register_token");
+        return [$user,$token];
     }
 
     public static function login($request)
@@ -68,6 +70,15 @@ class User extends Authenticatable
         else{
             return false;
         }
+    }
+
+    public static function update_user($request,$user)
+    {
+        $user->update([
+            'name'=>$request['name'],
+            'role_id'=>$request['role_id']
+        ]);
+        return $user;
     }
 
 }

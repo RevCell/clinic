@@ -11,5 +11,13 @@ Route::get('/user', function (Request $request) {
 //---------------REGISTER_LOGIN-------------------//
 Route::post("/register",[AuthController::class,'register']);
 Route::post("/login",[AuthController::class,"login"]);
-Route::get("/logout",[AuthController::class,"logout"])->middleware("auth:sanctum");
+
+//--------------AUTH-----------------------------//
+Route::middleware("auth:sanctum")->group(function (){
+    //USERS--------------------
+    Route::get("/logout",[AuthController::class,"logout"]);
+    Route::get("/index",[AuthController::class,"index"]);
+    Route::patch("/update/{user}",[AuthController::class,'update']);
+    Route::delete("/delete/{user}",[AuthController::class,'destroy']);
+});
 
