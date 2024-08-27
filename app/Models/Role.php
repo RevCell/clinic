@@ -23,4 +23,20 @@ class Role extends Model
         $result=Permission::query()->where("title",$permission)->firstOrFail();
         return $this->permissions()->where("id",$result->id)->exists();
     }
+
+    public static function create_role($request)
+    {
+        $role=Role::query()->create([
+            'title'=>$request['title']
+        ]);
+        return $role;
+    }
+
+    public static function update_role($request,$role)
+    {
+        $role->update([
+            'title'=>$request['title']
+        ]);
+        return $role;
+    }
 }

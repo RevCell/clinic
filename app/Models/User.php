@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public static function register($request)
+    public static function register($request): array
     {
         $user=User::query()->create([
             'name' => $request['name'],
