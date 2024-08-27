@@ -24,10 +24,11 @@ class RoleSeeder extends Seeder
 
         $patient_roles=Role::query()->where("title",'Patient')->first();
         $permissions=Permission::query()->whereIn('title',[
-            'Index_section',
+            'index_section',
             'read_section',
             'index_doctor',
             'read_doctor',
+            'read_user',
             'create_appointment',
             'read_appointment',
             'delete_appointment'

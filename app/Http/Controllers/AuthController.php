@@ -8,8 +8,8 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AuthController extends Controller
 {
@@ -61,8 +61,14 @@ class AuthController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
+        if (Gate::denies("index_user")){
+            return response()->json([
+                'message'=>"you are now allowed to see users list",
+                "status"=>401
+            ]);
+        }
         $user_list=User::all();
         return \response()->json([
            "message"=>"user list fetched successfully",
@@ -71,11 +77,32 @@ class AuthController extends Controller
         ]);
     }
 
+    public function view(User $user): JsonResponse
+    {
+        if (Gate::denies("read_user",$user)){
+            return response()->json([
+                'message'=>'you are not allowed to view this user',
+                'status'=>401
+            ]);
+        }
+        return response()->json([
+            'message'=>'selected user has fetched successfully',
+            'detail'=>new UserResource($user),
+            'status'=>200
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
+        if (Gate::denies("update_user",$user)){
+            return response()->json([
+                'message'=>'you are not allowed to update any users',
+                'status'=>401
+            ]);
+        }
         $result=User::update_user($request->validated(),$user);
         return response()->json([
             'message'=>"user updated successfully",
@@ -89,6 +116,12 @@ class AuthController extends Controller
      */
     public function destroy(User $user)
     {
+        if (Gate::denies("delete_user",$user)){
+            return response()->json([
+               'message'=>"you are not allowed to delete any users",
+               'status'=>401
+            ]);
+        }
         $user->delete();
         return response()->json([
             'message'=>"user deleted successfully",

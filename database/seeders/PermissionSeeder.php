@@ -37,10 +37,6 @@ class PermissionSeeder extends Seeder
            ],
             //---------User management:
            [
-               'title'=>'create_user',
-               'description'=>'Creating new user'
-           ],
-           [
                'title'=>'read_user',
                'description'=>'Viewing a user'
            ],
@@ -51,6 +47,10 @@ class PermissionSeeder extends Seeder
            [
                'title'=>'delete_user',
                'description'=>'deleting a user'
+           ],
+           [
+               'title'=>'index_user',
+               'description'=>'Viewing the index of all users'
            ],
             //---------Doctors management:
            [
