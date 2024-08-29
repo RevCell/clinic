@@ -14,26 +14,18 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         Permission::query()->insert([
-           //---------Medical Sections:
+           //---------Departments:
            [
-               'title'=>'index_section',
-               'description'=>'Viewing the index of medical sections'
+               'title'=>'create_department',
+               'description'=>'Creating new medical department'
            ],
            [
-               'title'=>'create_section',
-               'description'=>'Creating new medical section'
+               'title'=>'update_department',
+               'description'=>'updating an existing medical department'
            ],
            [
-               'title'=>'read_section',
-               'description'=>'Viewing a medical section'
-           ],
-           [
-               'title'=>'update_section',
-               'description'=>'updating an existing medical section'
-           ],
-           [
-               'title'=>'delete_section',
-               'description'=>'deleting a medical section'
+               'title'=>'delete_department',
+               'description'=>'deleting a medical department'
            ],
             //---------User management:
            [

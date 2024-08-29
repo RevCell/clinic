@@ -7,6 +7,7 @@ use App\Http\Resources\RoleResource;
 use App\Models\Role;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
+use Psy\Util\Json;
 
 class RoleController extends Controller
 {
@@ -47,7 +48,7 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(RoleRequest $request)
+    public function create(RoleRequest $request): JsonResponse
     {
         if (Gate::denies("create_role")){
             return response()->json([

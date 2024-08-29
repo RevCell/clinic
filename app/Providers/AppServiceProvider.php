@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Policies\DepartmentPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\Userpolicy;
 use Illuminate\Support\Facades\Gate;
@@ -35,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("create_role",[RolePolicy::class,'create']);
         Gate::define("update_role",[RolePolicy::class,'update']);
         Gate::define("delete_role",[RolePolicy::class,'delete']);
-        //
+        //DEPARTMENT MANAGEMENT---------------------
+        Gate::define("create_department",[DepartmentPolicy::class,'create']);
+        Gate::define("update_department",[DepartmentPolicy::class,'update']);
+        Gate::define("delete_department",[DepartmentPolicy::class,'delete']);
+        //DOCTORS-----------------------------------
     }
 }
