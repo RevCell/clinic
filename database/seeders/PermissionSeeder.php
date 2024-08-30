@@ -46,16 +46,8 @@ class PermissionSeeder extends Seeder
            ],
             //---------Doctors management:
            [
-               'title'=>'index_doctor',
-               'description'=>'Viewing the index of all doctors'
-           ],
-           [
                'title'=>'create_doctor',
                'description'=>'Creating new doctor'
-           ],
-           [
-               'title'=>'read_doctor',
-               'description'=>'Viewing a doctor'
            ],
            [
                'title'=>'update_doctor',

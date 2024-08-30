@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,10 @@ Route::post("/login",[AuthController::class,"login"]);
 //DEPARTMENTS(guest)------------------------------
 Route::get("/department",[DepartmentController::class,"index"]);
 Route::get("/department/{department}",[DepartmentController::class,"read"]);
+//DOCTORS(guest)----------------------------------
+Route::get("/doctor",[DoctorController::class,'index']);
+Route::get("/doctor/{doctor}",[DoctorController::class,'read']);
+
 
 //----------------GUEST END ----------------------
 //|||||||||||||||||||||||||||||||||||||||||||||||||
@@ -41,6 +46,9 @@ Route::middleware("auth:sanctum")->group(function (){
     Route::patch("/department/update/{department}",[DepartmentController::class,"update"]);
     Route::delete("/department/delete/{department}",[DepartmentController::class,"delete"]);
     //DOCTORS-----------------------------------
+    Route::post("/doctor",[DoctorController::class,'create']);
+    Route::patch("/doctor/update/{doctor}",[DoctorController::class,'update']);
+    Route::delete("/doctor/delete/{doctor}",[DoctorController::class,'delete']);
 });
 //--------------AUTH END-------------------------------//
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||
