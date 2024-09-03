@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DaysController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\RoleController;
@@ -22,6 +23,9 @@ Route::get("/department/{department}",[DepartmentController::class,"read"]);
 //DOCTORS(guest)----------------------------------
 Route::get("/doctor",[DoctorController::class,'index']);
 Route::get("/doctor/{doctor}",[DoctorController::class,'read']);
+//DAYS_OF_WEEK------------------------------
+Route::get("/days-of-week",[DaysController::class,'index']);
+Route::get("/days-of-week/{daysOfWeek}",[DaysController::class,"read"]);
 
 
 //----------------GUEST END ----------------------

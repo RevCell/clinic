@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Doctor extends Model
 {
@@ -15,6 +16,14 @@ class Doctor extends Model
         'user_id',
         'department_id'
     ];
+
+    public function workingDays(): BelongsToMany
+    {
+        return $this->belongsToMany(DaysOfWeek::class,
+            "doctors_days",
+            "doctor_id",
+            'days_id');
+    }
 
     public function department(): BelongsTo
     {
