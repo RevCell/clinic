@@ -108,6 +108,19 @@ class PermissionSeeder extends Seeder
                 'title'=>'delete_working_time',
                 'description'=>'deleting a working time'
             ],
+            //----------Working-days management:
+            [
+                'title'=>"create_wd",
+                'description'=>"creating new working day for a doctor"
+            ],
+            [
+                'title'=>"update_wd",
+                'description'=>"updating an existing working day for a doctor"
+            ],
+            [
+                'title'=>"delete_wd",
+                'description'=>"deleting a working day for a doctor"
+            ],
         ]);
     }
 }

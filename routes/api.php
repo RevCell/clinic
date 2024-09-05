@@ -53,6 +53,11 @@ Route::middleware("auth:sanctum")->group(function (){
     Route::post("/doctor",[DoctorController::class,'create']);
     Route::patch("/doctor/update/{doctor}",[DoctorController::class,'update']);
     Route::delete("/doctor/delete/{doctor}",[DoctorController::class,'delete']);
+    //DAYS_OF_WEEK------------------------------
+    Route::post("/days-of-week/create/{daysOfWeek}",[DaysController::class,'create']);
+    Route::patch("/days-of-week/update/{daysOfWeek}",[DaysController::class,'update']);
+    Route::delete("/days-of-week/delete/{daysOfWeek}",[DaysController::class,'delete']);
+
 });
 //--------------AUTH END-------------------------------//
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||

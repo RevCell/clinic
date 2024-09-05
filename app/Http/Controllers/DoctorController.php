@@ -6,6 +6,7 @@ use App\Http\Requests\DoctorRequest;
 use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class DoctorController extends Controller
@@ -45,7 +46,7 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function update(Doctor $doctor,DoctorRequest $request)
+    public function update(Doctor $doctor,DoctorRequest $request): JsonResponse
     {
         if (Gate::denies("update_doctor",$doctor)){
             return \response()->json([
@@ -61,7 +62,7 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function delete(Doctor $doctor)
+    public function delete(Doctor $doctor): JsonResponse
     {
         if (Gate::denies("delete_doctor",$doctor)){
             return \response()->json([

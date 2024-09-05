@@ -7,6 +7,7 @@ use App\Policies\DepartmentPolicy;
 use App\Policies\DoctorPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\Userpolicy;
+use App\Policies\WorkingDaysPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -47,5 +48,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("update_doctor",[DoctorPolicy::class,'update']);
         Gate::define("delete_doctor",[DoctorPolicy::class,"delete"]);
         Gate::define("index_doctor",[DoctorPolicy::class,'index']);
+        //DaysOfWeek--------------------------------
+        Gate::define("create_wd",[WorkingDaysPolicy::class,'create']);
+        Gate::define("update_wd",[WorkingDaysPolicy::class,'update']);
+        Gate::define("delete_wd",[WorkingDaysPolicy::class,'delete']);
     }
 }
