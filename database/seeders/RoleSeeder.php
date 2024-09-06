@@ -15,24 +15,35 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::query()->insert([
-          [ 'title'=>'Super Admin'],
-          [ 'title'=>'Patient']
+          ['title'=>'Super Admin'],
+          ['title'=>'Patient'],
+          ['title'=>"Doctor"]
         ]);
 
         $admin_roles=Role::query()->where('title','Super Admin')->first();
         $admin_roles->permissions()->attach(Permission::all());
 
+
         $patient_roles=Role::query()->where("title",'Patient')->first();
-        $permissions=Permission::query()->whereIn('title',[
-            'index_section',
-            'read_section',
-            'index_doctor',
-            'read_doctor',
+        $Pat_permissions=Permission::query()->whereIn('title',[
             'read_user',
             'create_appointment',
             'read_appointment',
             'delete_appointment'
         ])->get();
-        $patient_roles->permissions()->attach($permissions);
+        $patient_roles->permissions()->attach($Pat_permissions);
+
+
+        $doctor_role=Role::query()->where("title","Doctor")->first();
+        $doc_permissions=Permission::query()->whereIn('title',[
+            'read_user',
+            'create_appointment',
+            'read_appointment',
+            'update_appointment',
+            'create_working_hour',
+            'doctor_update_working_hour',
+            'delete_working_hour',
+        ])->get();
+        $doctor_role->permissions()->attach($doc_permissions);
     }
 }

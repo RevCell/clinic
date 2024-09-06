@@ -91,22 +91,22 @@ class PermissionSeeder extends Seeder
                 'title'=>'delete_appointment',
                 'description'=>'deleting a appointment'
             ],
-            //---------Working-time management:
+            //---------Working-Hours management:
             [
-                'title'=>'create_working_time',
-                'description'=>'Creating new working time'
+                'title'=>'create_working_hour',
+                'description'=>'Creating new working hour'
             ],
             [
-                'title'=>'read_working_time',
-                'description'=>'Viewing a working time'
+                'title'=>'doctor_update_working_hour',
+                'description'=>'updating an existing working hour as a doctor'
             ],
             [
-                'title'=>'update_working_time',
-                'description'=>'updating an existing working time'
+                'title'=>'admin_update_working_hour',
+                'description'=>'updating an existing working hour as admin'
             ],
             [
-                'title'=>'delete_working_time',
-                'description'=>'deleting a working time'
+                'title'=>'delete_working_hour',
+                'description'=>'deleting a working hour'
             ],
             //----------Working-days management:
             [

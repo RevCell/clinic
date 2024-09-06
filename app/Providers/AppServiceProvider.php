@@ -8,6 +8,7 @@ use App\Policies\DoctorPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\Userpolicy;
 use App\Policies\WorkingDaysPolicy;
+use App\Policies\WorkingHoursPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -52,5 +53,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("create_wd",[WorkingDaysPolicy::class,'create']);
         Gate::define("update_wd",[WorkingDaysPolicy::class,'update']);
         Gate::define("delete_wd",[WorkingDaysPolicy::class,'delete']);
+        //WorkingHours------------------------------
+        Gate::define("create_working_hour",[WorkingHoursPolicy::class,'create']);
+        Gate::define("doctor_update_working_hour",[WorkingHoursPolicy::class,'update_doctor']);
+        Gate::define("admin_update_working_hour",[WorkingHoursPolicy::class,'update_admin']);
+        Gate::define("delete_working_hour",[WorkingHoursPolicy::class,'delete']);
     }
 }

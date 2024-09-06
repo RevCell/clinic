@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DoctorRequest extends FormRequest
+class WH_adminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,11 @@ class DoctorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=> ['sometimes','required','string','max:100'],
-            'user_id'=>['sometimes','required','exists:users,id'],
-            'department_id'=>['sometimes','required','exists:departments,id']
+            'StartingTime'=>["sometimes",'required',"after:08:00","before:17:00"],
+            'EndingTime'=>["sometimes",'required',"after:09:00","before:18:00"],
+            'status'=>["sometimes",'required','boolean'],
+            'doctor_id'=>['required','exists:doctors,id'],
+            'day_id'=>['sometimes','required','exists:days_of_weeks,id']
         ];
     }
 }
