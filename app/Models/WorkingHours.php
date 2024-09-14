@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class WorkingHours extends Model
 {
@@ -28,12 +29,17 @@ class WorkingHours extends Model
         return $this->belongsTo(DaysOfWeek::class,'day_id','id');
     }
 
+    public function appointments(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class,'appointments','working_hour_id','user_id');
+    }
+
     public static function create_working_hour($request,$doctor)
     {
         return WorkingHours::query()->create([
             'StartingTime'=>$request['StartingTime'],
             'EndingTime'=>$request['EndingTime'],
-            'doctor_id'=>6,
+            'doctor_id'=>$doctor['id'],
             'day_id'=>$request['day_id']
         ]);
     }

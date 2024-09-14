@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Requests\AppointmentPatientRequest;
 use App\Models\User;
+use App\Policies\AppointmentPolicy;
 use App\Policies\DepartmentPolicy;
 use App\Policies\DoctorPolicy;
 use App\Policies\RolePolicy;
@@ -58,5 +60,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define("doctor_update_working_hour",[WorkingHoursPolicy::class,'update_doctor']);
         Gate::define("admin_update_working_hour",[WorkingHoursPolicy::class,'update_admin']);
         Gate::define("delete_working_hour",[WorkingHoursPolicy::class,'delete']);
+        //Doctor'sAppointment-----------------------
+        Gate::define("create_appointment",[AppointmentPolicy::class,'create']);
+        Gate::define("index_appointment",[AppointmentPolicy::class,'index']);
+        Gate::define("read_appointment",[AppointmentPolicy::class,'view']);
+        Gate::define("update_appointment_patient",[AppointmentPolicy::class,'update_patient']);
+        Gate::define("update_appointment_doctor",[AppointmentPolicy::class,'update_doctor']);
+        Gate::define("delete_appointment_user",[AppointmentPolicy::class,'delete_user']);
+        Gate::define("delete_appointment_admin",[AppointmentPolicy::class,'delete_admin']);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaysController;
 use App\Http\Controllers\DepartmentController;
@@ -61,6 +62,15 @@ Route::middleware("auth:sanctum")->group(function (){
     Route::patch("/working-hours/update-doctor/{workingHours}",[WorkingHoursController::class,'update_doctor']);
     Route::patch("/working-hours/update-admin/{workingHours}",[WorkingHoursController::class,'update_admin']);
     Route::delete("/working-hours/delete/{workingHours}",[WorkingHoursController::class,'delete']);
+    //DOCTOR'S_APPOINTMENT------------------------------
+    Route::get("/appointment",[AppointmentController::class,'index']);
+    Route::get("/appointment/{appointment}",[AppointmentController::class,'read']);
+    Route::post("/appointment/create",[AppointmentController::class,'create']);
+    Route::patch("appointment/update-patient/{appointment}",[AppointmentController::class,'update_patient']);
+    Route::patch("appointment/update-doctor/{appointment}",[AppointmentController::class,'update_doctor']);
+    Route::delete("/appointment/delete/user/{appointment}",[AppointmentController::class,'delete_user']);
+    Route::delete("/appointment/delete/admin/{appointment}",[AppointmentController::class,'delete_admin']);
+
 
 });
 //--------------AUTH END-------------------------------//

@@ -42,7 +42,7 @@ class WorkingHoursController extends Controller
             ]);
         }
         $user=auth()->user();
-        $doctor=Doctor::query()->where("user_id",$user['id']);
+        $doctor=Doctor::query()->where("user_id",$user['id'])->first();
         $result=WorkingHours::create_working_hour($request->validated(),$doctor);
         return response()->json([
             'message'=>"new working hour has successfully been created",

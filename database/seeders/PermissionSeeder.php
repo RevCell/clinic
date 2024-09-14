@@ -84,12 +84,24 @@ class PermissionSeeder extends Seeder
                 'description'=>'Viewing a appointment'
             ],
             [
-                'title'=>'update_appointment',
-                'description'=>'updating an existing appointment'
+                'title'=>'update_appointment_patient',
+                'description'=>'updating an existing appointment by patient'
             ],
             [
-                'title'=>'delete_appointment',
-                'description'=>'deleting a appointment'
+                'title'=>'update_appointment_doctor',
+                'description'=>'updating an existing appointment bt doctor'
+            ],
+            [
+                'title'=>'delete_appointment_admin',
+                'description'=>'deleting a appointment as admin'
+            ],
+            [
+                'title'=>'delete_appointment_user',
+                'description'=>'deleting a appointment as a user'
+            ],
+            [
+                'title'=>'index_appointment',
+                'description'=>'Viewing the list of all appointments'
             ],
             //---------Working-Hours management:
             [

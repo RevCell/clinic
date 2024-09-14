@@ -29,7 +29,9 @@ class RoleSeeder extends Seeder
             'read_user',
             'create_appointment',
             'read_appointment',
-            'delete_appointment'
+            'update_appointment_patient',
+            'delete_appointment_user',
+            'index_appointment'
         ])->get();
         $patient_roles->permissions()->attach($Pat_permissions);
 
@@ -39,7 +41,9 @@ class RoleSeeder extends Seeder
             'read_user',
             'create_appointment',
             'read_appointment',
-            'update_appointment',
+            'update_appointment_doctor',
+            'index_appointment',
+            'delete_appointment_user',
             'create_working_hour',
             'doctor_update_working_hour',
             'delete_working_hour',
